@@ -15,6 +15,51 @@ const products = [
     ]
   },
   {
+    id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c7",
+    image: "https://m.media-amazon.com/images/I/31g-P19G-yL._MCnd_AC_.jpg",
+    name: "iPhone 16 Pro 256 GB: 5G Mobile Phone with Camera Control, 4K 120 fps Dolby Vision and a Huge Leap in Battery Life. Works with AirPods; Black Titanium",
+    rating: {
+      stars: 4.5,
+      count: 156
+    },
+    priceCents: 140978,
+    keywords: [
+      "mobile",
+      "apple",
+      "tech"
+    ]
+  },
+  {
+    id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c9",
+    image: "https://m.media-amazon.com/images/I/91RnDCyguML._AC_UY218_.jpg",
+    name: "Samsung 214 cm (85 inches) 8K Ultra HD Smart Neo QLED TV QA85QN900CKXXL (Titan Black)",
+    rating: {
+      stars: 3.5,
+      count: 18
+    },
+    priceCents: 1204058,
+    keywords: [
+      "tv",
+      "expensive",
+      "tech"
+    ]
+  },
+  {
+    id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c8",
+    image: "https://m.media-amazon.com/images/I/41hHF65ICPL._MCnd_AC_.jpg",
+    name: "Prestige IRIS Toughened Glass-Top 3 Brass Burner LPG Gas Stove | Black Spill Proof Design | Ergonomic Knob | Tri-Pin Burners |Open",
+    rating: {
+      stars: 4,
+      count: 7718
+    },
+    priceCents: 6000,
+    keywords: [
+      "kitchen",
+      "appliances",
+      "cooktop"
+    ]
+  },
+  {
     id: "15b6fc6f-327a-4ec4-896f-486349e85a3d",
     image: "images/products/intermediate-composite-basketball.jpg",
     name: "Intermediate Size Basketball",
