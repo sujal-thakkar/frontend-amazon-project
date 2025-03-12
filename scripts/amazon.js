@@ -68,12 +68,20 @@ cartBtns.forEach((cartBtn) => {
           cartItem.quantity += 1;
           flag = 1;
         }
-      })
+      });
       if(flag === 0) {
         cart.push({
           productId: productId,
           quantity: 1
-        })
+        });
       }
-    })
-})
+
+      let totalQuantity = 0;
+      cart.forEach((item) => {
+        totalQuantity += item.quantity;
+      });
+      console.log(totalQuantity);
+      document.querySelector('.js-cart-quantity').innerHTML = totalQuantity;
+
+    });
+});
