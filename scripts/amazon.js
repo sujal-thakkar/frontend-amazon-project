@@ -75,7 +75,5 @@ cartBtns.forEach((cartBtn) => {
           quantity: 1
         })
       }
-      
-      console.log(cart);
     })
 })
