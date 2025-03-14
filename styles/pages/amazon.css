@@ -143,6 +143,9 @@
      opacity and make it visible. */
   opacity: 0;
 }
+.added-msg-visible {
+  opacity: 1;
+}
 
 .added-to-cart img {
   height: 20px;
