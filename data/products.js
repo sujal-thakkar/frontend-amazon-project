@@ -1,5 +1,20 @@
 const products = [
   {
+    id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c10",
+    image: "https://m.media-amazon.com/images/I/71LRmBwexWL._AC_UY218_.jpg",
+    name: "Sony Fx6 Cinema Line Full-Frame Digital Zoom Camera | 4K 120P | S-Cinetone for Cinematic Impression | Built-in Nd Filter | Made for Filmmakers (?Ilme-Fx6V) - Grey",
+    rating: {
+      stars: 5,
+      count: 3
+    },
+    priceCents: 678809,
+    keywords: [
+      "camera",
+      "cinema",
+      "expensive"
+    ]
+  },
+  {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
     image: "images/products/athletic-cotton-socks-6-pairs.jpg",
     name: "Black and Gray Athletic Cotton Socks - 6 Pairs",
@@ -71,6 +86,34 @@ const products = [
     keywords: [
       "sports",
       "basketballs"
+    ]
+  },
+  {
+    id: "15b6fc6f-327a-4ec4-896f-486349e85a3f",
+    image: "https://m.media-amazon.com/images/I/41C8i90DIxL._AC_UL320_.jpg",
+    name: "Nexlev Electric Spin Scrubber | 4500 mAh Battery & Copper Motor| 90 min Run time| 2 Modes| Spray Function|Extendable Handle| 6 Brushes| IP68 Waterproof |Cordless Type C| 1 Year Warranty|Turbo SS-01",
+    rating: {
+      stars: 3.5,
+      count: 53
+    },
+    priceCents: 83409,
+    keywords: [
+      "appliance",
+      "floor-cleaner"
+    ]
+  },
+  {
+    id: "15b6fc6f-327a-4ec4-896f-486349e85a3e",
+    image: "https://m.media-amazon.com/images/I/61vo3cg8ZrL._AC_UL320_.jpg",
+    name: "Azah Personal Massager For Women | 20 Vibration Modes, USB Rechargeable, Waterproof, Medical Grade Silicone, 3 Months Warranty | Handheld Electric Body Massager | Full Body Massager For Pain Relief",
+    rating: {
+      stars: 4,
+      count: 1543
+    },
+    priceCents: 918,
+    keywords: [
+      "massager",
+      "sex-toy"
     ]
   },
   {
