@@ -74,7 +74,7 @@ cartBtns.forEach((cartBtn) => {
 
       if(flag === 0) {
         cart.push({
-          productId: productId,
+          productId,
           quantity: Number(selectedQuantity.value)
         });
       }
