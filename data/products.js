@@ -104,16 +104,16 @@ export const products = [
   },
   {
     id: "15b6fc6f-327a-4ec4-896f-486349e85a3e",
-    image: "https://m.media-amazon.com/images/I/61vo3cg8ZrL._AC_UL320_.jpg",
-    name: "Azah Personal Massager For Women | 20 Vibration Modes, USB Rechargeable, Waterproof, Medical Grade Silicone, 3 Months Warranty | Handheld Electric Body Massager | Full Body Massager For Pain Relief",
+    image: "https://m.media-amazon.com/images/I/41khKDOHx0L._MCnd_AC_.jpg",
+    name: "NutriPro Juicer Mixer Grinder - Smoothie Maker - 500 Watts (2 Jar, Silver) - 2 Year Warranty",
     rating: {
       stars: 4,
-      count: 1543
+      count: 19494
     },
-    priceCents: 918,
+    priceCents: 1870,
     keywords: [
-      "massager",
-      "sex-toy"
+      "appliance",
+      "mixer grinder"
     ]
   },
   {

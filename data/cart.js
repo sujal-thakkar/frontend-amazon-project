@@ -1,14 +1,16 @@
 export let cart = JSON.parse(localStorage.getItem('cart'));
 
-if(!cart) {
+if (!cart) {
     cart = [
         {
             productId: 'e43638ce-6aa0-4b85-b27f-e1d07eb678c10',
-            quantity: 2
+            quantity: 2,
+            deliveryOptionsId: '1'
         },
         {
             productId: '15b6fc6f-327a-4ec4-896f-486349e85a3d',
-            quantity: 1
+            quantity: 1,
+            deliveryOptionsId: '2'
         }
     ]
 }
@@ -30,7 +32,8 @@ export function addToCart(productId, selectedQuantity) {
     if (flag === 0) {
         cart.push({
             productId,
-            quantity: Number(selectedQuantity.value)
+            quantity: Number(selectedQuantity.value),
+            deliveryOptionsId: '1'
         });
     }
 
@@ -40,7 +43,7 @@ export function addToCart(productId, selectedQuantity) {
 export function removeFromCart(productId) {
     const newCart = [];
     cart.forEach((cartItem) => {
-        if(cartItem.productId !== productId)
+        if (cartItem.productId !== productId)
             newCart.push(cartItem);
     });
 
@@ -54,13 +57,13 @@ export function calculateCartQuantity() {
     cart.forEach((cartItem) => {
         totalQuantity += cartItem.quantity;
     });
-    
+
     return totalQuantity;
 }
 
 export function updateQuantity(productId, newQuantity) {
     cart.forEach((item) => {
-        if(item.productId === productId) {
+        if (item.productId === productId) {
             item.quantity = newQuantity;
         }
 
