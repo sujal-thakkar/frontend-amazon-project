@@ -1,7 +1,6 @@
 import {
     cart,
     removeFromCart,
-    calculateCartQuantity,
     updateQuantity,
     updateDeliveryOption
 }
@@ -13,13 +12,6 @@ import { deliveryOptions, getDeliveryOption } from '../../data/deliveryOptions.j
 import { renderPaymentSummary } from './paymentSummary.js';
 
 export function renderOrderSummary() {
-
-    function updateCheckoutHeader() {
-        let totalQuantity = calculateCartQuantity();
-        document.querySelector('.js-checkout-count').innerHTML = `${totalQuantity} items`;
-    };
-    updateCheckoutHeader();
-
     let cartHTML = '';
     let deliveryOptionNumber = 0;
 
@@ -132,9 +124,10 @@ export function renderOrderSummary() {
                 const productId = link.dataset.productId;
                 removeFromCart(productId);
 
-                const itemToBeDeleted = document.querySelector(`.js-cart-item-container-${productId}`)
-                itemToBeDeleted.remove();
-                updateCheckoutHeader();
+                /* const itemToBeDeleted = document.querySelector(`.js-cart-item-container-${productId}`)
+                itemToBeDeleted.remove(); */
+
+                renderOrderSummary(); //instead of using DOM and updating the page directly by using .remove(), regenerating the HTML for orderSummary.
 
                 renderPaymentSummary();
             });
@@ -164,7 +157,6 @@ export function renderOrderSummary() {
 
                 if (newQuantity >= 0 && newQuantity < 1000) {
                     updateQuantity(productId, newQuantity);
-                    updateCheckoutHeader();
 
                     document.querySelector(`.js-quantity-label-${productId}`)
                         .innerHTML = newQuantity;
@@ -187,7 +179,6 @@ export function renderOrderSummary() {
 
                     if (newQuantity >= 0 && newQuantity < 1000) {
                         updateQuantity(productId, newQuantity);
-                        updateCheckoutHeader();
 
                         document.querySelector(`.js-quantity-label-${productId}`)
                             .innerHTML = newQuantity;
