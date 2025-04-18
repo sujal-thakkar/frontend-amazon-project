@@ -129,10 +129,13 @@ export function renderOrderSummary() {
         .forEach((link) => {
             link.addEventListener('click', () => {
                 const productId = link.dataset.productId;
+
                 const itemContainer = document.querySelector(`.js-cart-item-container-${productId}`);
+
                 itemContainer.classList.add('is-editing-quantity');
 
                 const prevLabeledQuant = document.querySelector(`.js-quantity-label-${productId}`).innerHTML;
+                
                 document.querySelector(`.js-quantity-input-${productId}`)
                     .value = prevLabeledQuant;
             });
@@ -142,7 +145,9 @@ export function renderOrderSummary() {
         .forEach((link) => {
             link.addEventListener('click', () => {
                 const productId = link.dataset.productId;
+
                 const itemContainer = document.querySelector(`.js-cart-item-container-${productId}`);
+
                 itemContainer.classList.remove('is-editing-quantity');
 
                 const newQuantity = Number(document.querySelector(`.js-quantity-input-${productId}`).value);
@@ -156,6 +161,10 @@ export function renderOrderSummary() {
                 else {
                     alert('Quantity can\'t be too low or high');
                 }
+
+                renderCheckoutHeader();
+
+                renderPaymentSummary();
             });
         });
 
@@ -178,6 +187,10 @@ export function renderOrderSummary() {
                     else {
                         alert('Quantity can\'t be too low or high');
                     }
+
+                    renderCheckoutHeader();
+
+                    renderPaymentSummary();
                 }
             });
         });
@@ -186,7 +199,9 @@ export function renderOrderSummary() {
         .forEach((option) => {
             option.addEventListener('click', () => {
                 const { productId, deliveryOptionId } = option.dataset;
+
                 updateDeliveryOption(productId, deliveryOptionId);
+
                 renderOrderSummary();
 
                 renderPaymentSummary();
