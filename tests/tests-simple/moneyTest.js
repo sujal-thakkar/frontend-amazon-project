@@ -1,4 +1,4 @@
-import { formatCurrency } from "../scripts/utils/money.js";
+import { formatCurrency } from "../../scripts/utils/money.js";
 
 // There are two types of Tests we can do. One is 'Manual Testing', which is done by looking at the page and tweaking, changing the code to test our test-cases. It's a hassel to test every cases by changing the code and see.
 
