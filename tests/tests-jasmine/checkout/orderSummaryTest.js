@@ -1,5 +1,6 @@
 import { renderOrderSummary } from "../../../scripts/checkout/orderSummary.js";
 import { loadFromStorage, cart } from "../../../data/cart.js";
+import { renderPaymentSummary } from "../../../scripts/checkout/paymentSummary.js";
 
 describe('test suite: render order summary', () => {
     const productId1 = 'e43638ce-6aa0-4b85-b27f-e1d07eb678c10';
@@ -49,6 +50,23 @@ describe('test suite: render order summary', () => {
         expect(
             document.querySelector(`.js-product-quantity-${productId2}`).innerText
         ).toContain('Quantity: 1');
+
+        expect(
+            document.querySelector(`.js-product-name-${productId1}`).innerText
+        ).toContain("Sony Fx6 Cinema Line Full-Frame Digital Zoom Camera");
+
+        expect(
+            document.querySelector(`.js-product-name-${productId2}`).innerText
+        ).toContain("Intermediate Size Basketball");
+
+        expect(
+            document.querySelector(`.js-product-price-${productId1}`).innerText
+        ).toEqual('$6788.09');
+
+
+        expect(
+            document.querySelector(`.js-product-price-${productId2}`).innerText
+        ).toEqual('$20.95');
     });
 
     it('removes a product', () => {
@@ -69,5 +87,25 @@ describe('test suite: render order summary', () => {
         expect(cart.length).toEqual(1);
 
         expect(cart[0].productId).toEqual(productId2);
+    });
+
+    it('updates the delivery option', () => {
+        document.querySelector(`.js-delivery-option-${productId1}-3`).click();
+
+        expect(
+            document.querySelector(`.js-delivery-option-input-${productId1}-3`).checked
+        ).toEqual(true);
+
+        expect(cart.length).toEqual(2);
+
+        expect(cart[0].productId && cart[0].deliveryOptionsId).toEqual(productId1 && '3');
+
+        expect(
+            document.querySelector('.js-payment-summary-shipping').innerText
+        ).toEqual('$14.98');
+
+        expect(
+            document.querySelector('.js-payment-summary-total').innerText
+        ).toEqual('$14973.32')
     });
 });

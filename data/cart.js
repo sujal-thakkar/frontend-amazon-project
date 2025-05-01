@@ -80,12 +80,19 @@ export function updateQuantity(productId, newQuantity) {
 }
 
 export function updateDeliveryOption(productId, deliveryOptionId) {
+    if(deliveryOptionId != '1' 
+        && deliveryOptionId != '2' 
+        && deliveryOptionId != '3') 
+    return;
+    
     let matchingProduct;
     cart.forEach((cartItem) => {
         if(cartItem.productId === productId) {
             matchingProduct = cartItem;
         }
     });
+
+    if(!matchingProduct) return;
 
     matchingProduct.deliveryOptionsId = deliveryOptionId;
 
