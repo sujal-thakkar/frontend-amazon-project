@@ -90,7 +90,7 @@ describe('test suite: remove from cart', () => {
     });
 });
 
-describe('update delivery option', () => {
+describe('test suite: update delivery option', () => {
     beforeEach(() => {
         spyOn(localStorage, 'setItem');
     });
