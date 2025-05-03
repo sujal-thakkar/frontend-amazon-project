@@ -58,6 +58,35 @@ class Clothing extends Product {
   }
 };
 
+/* const date = new Date();
+console.log(date);
+console.log(date.toLocaleTimeString()); */
+
+/* 
+console.log(this); // we can access "this" anywhere even in outside of class. by default, "this" points to no one. so its set to undefined. but originally "this" pointed to "Window" object but it created confusions, so it was removed.
+
+const obj = {
+  a : 78,
+  // b : this.a // obj is not created yet, so "this" is undefined
+} 
+*/
+
+/* this;
+const obj2 = {
+  method : () => {
+    console.log(this);
+  }
+}
+obj2.method(); */
+
+
+/* function logThis(team) {
+  console.log(this.a); // this points to obj and we can access a.
+  console.log(team);
+}
+// logThis();
+logThis.call(obj,'kkr'); */
+
 export const products = [
   {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c10",
