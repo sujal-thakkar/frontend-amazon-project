@@ -10,10 +10,18 @@ export function renderPaymentSummary() {
     cart.forEach((cartItem) => {
         const productId = cartItem.productId;
         const matchingProduct = getProduct(productId);
+
+        if (!matchingProduct) {
+            // console.warn(`Product with ID ${productId} not found.`);
+            return; // Skip this cart item if the product is missing
+        }
+
         productPriceCents += matchingProduct.priceCents * cartItem.quantity;
 
         const deliveryOption = getDeliveryOption(cartItem.deliveryOptionsId);
-        shippingPriceCents += deliveryOption.priceCents;
+        if (deliveryOption) {
+            shippingPriceCents += deliveryOption.priceCents;
+        }
     });
 
     const totalBeforeTaxCents = productPriceCents + shippingPriceCents;

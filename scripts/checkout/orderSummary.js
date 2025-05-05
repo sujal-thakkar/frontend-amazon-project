@@ -23,6 +23,11 @@ export function renderOrderSummary() {
 
         const matchingProduct = getProduct(productId);
 
+        if (!matchingProduct) {
+            // console.warn(`Product with ID ${productId} not found.`);
+            return; // Skip this cart item if the product is missing
+        }
+
         const deliveryOptionId = cartItem.deliveryOptionsId;
 
         const deliveryOption = getDeliveryOption(deliveryOptionId);
