@@ -29,19 +29,19 @@ export function addToCart(productId, selectedQuantity) {
     let matchingItem;
 
     cart.forEach((cartItem) => {
-        if(cartItem.productId === productId) matchingItem = cartItem;
+        if (cartItem.productId === productId) matchingItem = cartItem;
     });
 
     const quantityToAdd = Number(
         typeof selectedQuantity === 'object' ? selectedQuantity.value : selectedQuantity
     );
 
-    if(matchingItem) matchingItem.quantity += quantityToAdd;
+    if (matchingItem) matchingItem.quantity += quantityToAdd;
     else {
         cart.push({
             productId,
-            quantity : quantityToAdd,
-            deliveryOptionsId : '1'
+            quantity: quantityToAdd,
+            deliveryOptionsId: '1'
         });
     }
 
@@ -80,21 +80,33 @@ export function updateQuantity(productId, newQuantity) {
 }
 
 export function updateDeliveryOption(productId, deliveryOptionId) {
-    if(deliveryOptionId != '1' 
-        && deliveryOptionId != '2' 
-        && deliveryOptionId != '3') 
-    return;
-    
+    if (deliveryOptionId != '1'
+        && deliveryOptionId != '2'
+        && deliveryOptionId != '3')
+        return;
+
     let matchingProduct;
     cart.forEach((cartItem) => {
-        if(cartItem.productId === productId) {
+        if (cartItem.productId === productId) {
             matchingProduct = cartItem;
         }
     });
 
-    if(!matchingProduct) return;
+    if (!matchingProduct) return;
 
     matchingProduct.deliveryOptionsId = deliveryOptionId;
 
     saveToStorage();
+}
+
+export function loadCart(func) {
+    const xhr = new XMLHttpRequest();
+
+    xhr.addEventListener('load', () => {
+        console.log(xhr.response);
+        func();
+    });
+
+    xhr.open('GET', 'https://supersimplebackend.dev/cart');
+    xhr.send();
 }
