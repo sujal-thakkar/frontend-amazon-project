@@ -103,6 +103,8 @@ export function loadProductsFetch() {
       });
 
     console.log('load products');
+  }).catch((error) => {
+    console.log('Unexpected error occured. Please try again forever');
   });
 
   return promise;
@@ -128,6 +130,10 @@ export function loadProducts(func) {
 
     console.log('load products');
     func();
+  });
+
+  xhr.addEventListener('error', (error) => {
+    console.log('Unexpected error occured. Please try again forever');
   });
 
   xhr.open('GET', 'https://supersimplebackend.dev/products');

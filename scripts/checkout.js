@@ -8,15 +8,23 @@ import { loadCart } from '../data/cart.js';
 // import '../data/backend-practice.js';
 
 async function loadPage() {
-    await loadProductsFetch();
+    try {
+        // throw 'err';
 
-    const value = await new Promise((resolve) => {
-        loadCart(() => {
-            resolve('value69'); 
+        await loadProductsFetch();
+
+        const value = await new Promise((resolve, reject) => {
+            // throw 'err2';
+            loadCart(() => {
+                // reject('err3')
+                resolve('value69'); 
+            });
         });
-    });
-
-    console.log(value);
+        console.log(value);
+    }
+    catch(error) {
+        console.log('Unexpected error occured. Please try again forever');
+    }
 
     renderCheckoutHeader();
     renderOrderSummary();
