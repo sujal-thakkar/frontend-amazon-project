@@ -1,75 +1,75 @@
 import { formatCurrency } from "../scripts/utils/money.js";
 
 export function getProduct(productId) {
-    let matchingProduct;
+  let matchingProduct;
 
-    products.forEach((product) => {
-        if (product.id === productId) {
-            matchingProduct = product;
-        }
-    });
+  products.forEach((product) => {
+    if (product.id === productId) {
+      matchingProduct = product;
+    }
+  });
 
-    return matchingProduct;
+  return matchingProduct;
 };
 
 class Product {
-    id;
-    image;
-    name;
-    rating;
-    priceCents;
+  id;
+  image;
+  name;
+  rating;
+  priceCents;
 
-    constructor(productDetails) {
-        this.id = productDetails.id;
-        this.image = productDetails.image;
-        this.name = productDetails.name;
-        this.rating = productDetails.rating;
-        this.priceCents = productDetails.priceCents;
-    }
+  constructor(productDetails) {
+    this.id = productDetails.id;
+    this.image = productDetails.image;
+    this.name = productDetails.name;
+    this.rating = productDetails.rating;
+    this.priceCents = productDetails.priceCents;
+  }
 
-    getRatingsUrl() {
-        return `images/ratings/rating-${this.rating.stars * 10}.png`;
-    }
+  getRatingsUrl() {
+    return `images/ratings/rating-${this.rating.stars * 10}.png`;
+  }
 
-    getPrice() {
-        return `$${formatCurrency(this.priceCents)}`
-    }
+  getPrice() {
+    return `$${formatCurrency(this.priceCents)}`
+  }
 
-    extraInfoHTML() {
-        return '';
-    }
+  extraInfoHTML() {
+    return '';
+  }
 };
 
 class Clothing extends Product {
-    sizeChartLink;
+  sizeChartLink;
 
-    constructor(productDetails) {
-        super(productDetails); // calls the constructor of the parent class.
-        this.sizeChartLink = productDetails.sizeChartLink;
-    }
+  constructor(productDetails) {
+    super(productDetails); // calls the constructor of the parent class.
+    this.sizeChartLink = productDetails.sizeChartLink;
+  }
 
-    extraInfoHTML() {
-        // super.extraInfoHTML() // calls the parent's method
-        return `
+  extraInfoHTML() {
+    // super.extraInfoHTML() // calls the parent's method
+    return `
       <a href=${this.sizeChartLink} target="_blank">
         Size chart
       </a>
     `
-    }
+  }
 };
 
 class Appliance extends Product {
-    instructionsLink;
-    WarrantyLink;
+  instructionsLink;
+  WarrantyLink;
 
-    constructor(productDetails) {
-        super(productDetails);
-        this.instructionsLink = productDetails.instructionsLink;
-        this.warrantyLink = productDetails.warrantyLink;
-    }
+  constructor(productDetails) {
+    super(productDetails);
+    this.instructionsLink = productDetails.instructionsLink;
+    this.warrantyLink = productDetails.warrantyLink;
+  }
 
-    extraInfoHTML() {
-        return `
+  extraInfoHTML() {
+    return `
       <a href="${this.instructionsLink}" target="_blank">
         Instructions
       </a>
@@ -77,31 +77,35 @@ class Appliance extends Product {
         Warranty
       </a>
     `
-    }
+  }
 };
 
 export let products = [];
 
 export function loadProductsFetch() {
-    const promise = fetch(
-        'https://supersimplebackend.dev/products'
+  const promise = 
+    fetch(
+      'https://supersimplebackend.dev/products'
+
     ).then((response) => {
-        return response.json();
+      return response.json(); // this is asynchronous and returns the data got from backend. 
+      
+
     }).then((productsData) => {
         products = productsData.map((productDetails) => {
-            if (productDetails.type == 'clothing') {
-                return new Clothing(productDetails);
-            }
-            else if (productDetails.type == 'appliance') {
-                return new Appliance(productDetails);
-            }
-            return new Product(productDetails);
-        });
+        if (productDetails.type == 'clothing') {
+          return new Clothing(productDetails);
+        }
+        else if (productDetails.type == 'appliance') {
+          return new Appliance(productDetails);
+        }
+        return new Product(productDetails);
+      });
 
-        console.log('load products');
-    });
+    console.log('load products');
+  });
 
-    return promise;
+  return promise;
 }
 
 /* loadProductsFetch().then(() => {
@@ -109,29 +113,29 @@ export function loadProductsFetch() {
 }); */
 
 export function loadProducts(func) {
-    const xhr = new XMLHttpRequest();
+  const xhr = new XMLHttpRequest();
 
-    xhr.addEventListener('load', () => {
-        products = JSON.parse(xhr.response).map((productDetails) => {
-            if (productDetails.type == 'clothing') {
-                return new Clothing(productDetails);
-            }
-            else if (productDetails.type == 'appliance') {
-                return new Appliance(productDetails);
-            }
-            return new Product(productDetails);
-        });
-
-        console.log('load products');
-        func();
+  xhr.addEventListener('load', () => {
+    products = JSON.parse(xhr.response).map((productDetails) => {
+      if (productDetails.type == 'clothing') {
+        return new Clothing(productDetails);
+      }
+      else if (productDetails.type == 'appliance') {
+        return new Appliance(productDetails);
+      }
+      return new Product(productDetails);
     });
 
-    xhr.open('GET', 'https://supersimplebackend.dev/products');
-    xhr.send();
+    console.log('load products');
+    func();
+  });
+
+  xhr.open('GET', 'https://supersimplebackend.dev/products');
+  xhr.send();
 }
 
-/* 
-export const products = [
+
+/*export const products = [
   {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c10",
     image: "https://m.media-amazon.com/images/I/71LRmBwexWL._AC_UY218_.jpg",
