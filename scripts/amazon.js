@@ -7,10 +7,27 @@ loadProducts(renderProductsGrid);
 function renderProductsGrid() {
   updateCartQuantity();
 
+  // Get search parameter from URL
+  const url = new URL(window.location.href);
+  const search = url.searchParams.get('search');
+  let filteredProducts = products;
+
+  if (search && search.trim() !== '') {
+    const searchLower = search.toLowerCase();
+    filteredProducts = products.filter(product =>
+      product.name.toLowerCase().includes(searchLower) ||
+      (Array.isArray(product.keywords) &&
+        product.keywords.some(keyword =>
+          keyword.toLowerCase().includes(searchLower)
+        )
+      )
+    );
+  }
+
   let productsHTML = '';
 
-  products.forEach((product) => {
-      productsHTML += `
+  filteredProducts.forEach((product) => {
+    productsHTML += `
       <div class="product-container">
       <div class="product-image-container">
         <img class="product-image"
@@ -73,40 +90,55 @@ function renderProductsGrid() {
   const addedMsgTimeouts = {};
 
   function displayAddedMsg(productId) {
-      const addedMsg = document.querySelector(`.js-added-${productId}`);
+    const addedMsg = document.querySelector(`.js-added-${productId}`);
 
-      addedMsg.classList.add('added-msg-visible');
+    addedMsg.classList.add('added-msg-visible');
 
-      const previousTimeoutId = addedMsgTimeouts[productId];
+    const previousTimeoutId = addedMsgTimeouts[productId];
 
-      if (previousTimeoutId) 
+    if (previousTimeoutId)
       clearTimeout(previousTimeoutId);
 
-      const timeoutId = setTimeout(() => {
-          addedMsg.classList.remove('added-msg-visible');
-      }, 2000);
+    const timeoutId = setTimeout(() => {
+      addedMsg.classList.remove('added-msg-visible');
+    }, 2000);
 
-      addedMsgTimeouts[productId] = timeoutId;
+    addedMsgTimeouts[productId] = timeoutId;
   }
 
   function updateCartQuantity() {
-      let totalQuantity = calculateCartQuantity();
-      if(totalQuantity > 0)
-        document.querySelector('.js-cart-quantity').innerHTML = totalQuantity;
+    let totalQuantity = calculateCartQuantity();
+    if (totalQuantity > 0)
+      document.querySelector('.js-cart-quantity').innerHTML = totalQuantity;
   }
 
   cartBtns.forEach((cartBtn) => {
-      cartBtn.addEventListener('click', () => {
-          const productId = cartBtn.dataset.productId;
+    cartBtn.addEventListener('click', () => {
+      const productId = cartBtn.dataset.productId;
 
-          const selectedQuantity = document.querySelector(`.js-quantity-selector-${productId}`);
+      const selectedQuantity = document.querySelector(`.js-quantity-selector-${productId}`);
 
       addToCart(productId, selectedQuantity);
 
-          displayAddedMsg(productId);
+      displayAddedMsg(productId);
 
-          updateCartQuantity();
+      updateCartQuantity();
 
-      });
+    });
   });
+
+  const searchInput = document.querySelector('.js-search-input');
+  const searchBtnContainer = document.querySelector('.js-search');
+  searchBtnContainer.innerHTML = `
+    <button class="js-search-btn search-button">
+      <img class="search-icon" src="images/icons/search-icon.png">
+    </button>
+  `;
+
+  const searchBtn = document.querySelector('.js-search-btn');
+  searchBtn.addEventListener('click', () => {
+    const query = encodeURIComponent(searchInput.value);
+    window.location.href = `amazon.html?search=${query}`;
+  });
+
 }

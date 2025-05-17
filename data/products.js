@@ -13,18 +13,13 @@ export function getProduct(productId) {
 };
 
 class Product {
-  id;
-  image;
-  name;
-  rating;
-  priceCents;
-
-  constructor(productDetails) {
-    this.id = productDetails.id;
-    this.image = productDetails.image;
-    this.name = productDetails.name;
-    this.rating = productDetails.rating;
-    this.priceCents = productDetails.priceCents;
+  constructor({ id, name, image, priceCents, rating, keywords }) {
+    this.id = id;
+    this.name = name;
+    this.image = image;
+    this.priceCents = priceCents;
+    this.rating = rating;
+    this.keywords = keywords || []; 
   }
 
   getRatingsUrl() {
