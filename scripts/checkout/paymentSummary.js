@@ -11,6 +11,7 @@ export function renderPaymentSummary() {
     cart.forEach((cartItem) => {
         const productId = cartItem.productId;
         const matchingProduct = getProduct(productId);
+        console.log(matchingProduct);
 
         if (!matchingProduct) {
             // console.warn(`Product with ID ${productId} not found.`);
@@ -95,6 +96,7 @@ export function renderPaymentSummary() {
                 });
 
                 const order = await response.json();
+                console.log(order);
                 addOrder(order);
                 saveToStorage();
 

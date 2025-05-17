@@ -83,16 +83,15 @@ class Appliance extends Product {
 export let products = [];
 
 export function loadProductsFetch() {
-  const promise = 
+  const promise =
     fetch(
       'https://supersimplebackend.dev/products'
-
     ).then((response) => {
       return response.json(); // this is asynchronous and returns the data got from backend. 
-      
+
 
     }).then((productsData) => {
-        products = productsData.map((productDetails) => {
+      products = productsData.map((productDetails) => {
         if (productDetails.type == 'clothing') {
           return new Clothing(productDetails);
         }
@@ -101,11 +100,9 @@ export function loadProductsFetch() {
         }
         return new Product(productDetails);
       });
-
-    console.log('load products');
-  }).catch((error) => {
-    console.log('Unexpected error occured. Please try again forever');
-  });
+    }).catch((error) => {
+      console.log('Unexpected error occured. Please try again forever');
+    });
 
   return promise;
 }
