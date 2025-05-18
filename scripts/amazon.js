@@ -138,7 +138,7 @@ function renderProductsGrid() {
   const searchBtn = document.querySelector('.js-search-btn');
   searchBtn.addEventListener('click', () => {
     const query = encodeURIComponent(searchInput.value);
-    window.location.href = `amazon.html?search=${query}`;
+    window.location.href = `index.html?search=${query}`;
   });
 
 }
